@@ -9,16 +9,18 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class ManTest extends BaseTest {
+public class WomenTest extends BaseTest {
 
     @Test
-    public void testAddMenProductToCard() {
-        getWait2().until(ExpectedConditions.elementToBeClickable(By.id("menu-item-1228"))).click();
+    public void testAddWomenProductToCard() {
+        getDriver().findElement(By.id("menu-item-1229")).click();
 
-        getWait2().until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@aria-label='Add “Basic Blue Jeans” to your cart']"))).click();
+        getWait2().until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//a[@aria-label='Add “Anchor Bracelet” to your cart']"))).click();
         getWait2().until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@title='View cart']")));
 
-        getWait2().until(ExpectedConditions.elementToBeClickable(By.xpath("(//a[@title='View your shopping cart'])[1]"))).click();
+        getWait2().until(ExpectedConditions.elementToBeClickable(
+                By.xpath("(//a[@title='View your shopping cart'])[1]"))).click();
 
         List<String> productList = getDriver().findElements(By.xpath("//td[@data-title='Product']"))
                 .stream()
@@ -26,6 +28,6 @@ public class ManTest extends BaseTest {
                 .toList();
 
         Assert.assertEquals(productList.size(), 1);
-        Assert.assertEquals(productList.get(0), "Basic Blue Jeans");
+        Assert.assertEquals(productList.get(0), "Anchor Bracelet");
     }
 }
