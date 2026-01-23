@@ -1,13 +1,15 @@
 package com.ecommerce.base;
 
+import com.ecommerce.utils.ConfigUtils;
+import com.ecommerce.utils.DriverManagerUtils;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
 
 import java.time.Duration;
 
@@ -41,10 +43,10 @@ public abstract class BaseTest {
     }
 
     @BeforeMethod
-    public void beforeMethod() {
-        driver = new ChromeDriver();
+    public void beforeMethod(@Optional("chrome") String browser) {
+        driver = DriverManagerUtils.getWebdriver(browser);
 
-        driver.get("https://askomdch.com/");
+        driver.get(ConfigUtils.getProperty("baseUrl"));
 
         log.info("Browser started, homepage opened");
     }
