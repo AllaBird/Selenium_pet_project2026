@@ -35,7 +35,7 @@ public class ManTest extends BaseTest {
     }
 
     @Test
-    public void testPlaceOrderUsingJsonFileTest() {
+    public void testPlaceOrderUsingFakerTest() {
         User user = UserFactory.randomUser();
         getWait2().until(ExpectedConditions.elementToBeClickable(By.id("menu-item-1228"))).click();
 
@@ -69,7 +69,7 @@ public class ManTest extends BaseTest {
     }
 
     @Test
-    public void testPlaceOrderTestViaJson() {
+    public void testPlaceOrderUsingJsonFileTest() {
         User user = UserUtils.readFromJson("src/test/resources/user.json", User.class);
 
         getWait2().until(ExpectedConditions.elementToBeClickable(By.id("menu-item-1228"))).click();
