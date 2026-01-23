@@ -1,0 +1,10 @@
+{
+  "firstName": "Anna",
+  "lastName": "Smith",
+  "country": "United States(US)",
+  "address": "123 Main Street",
+  "town": "New York",
+  "state": "NY",
+  "zipCode": "10001",
+  "emailAddress": "anna.smith@test.com"
+}
