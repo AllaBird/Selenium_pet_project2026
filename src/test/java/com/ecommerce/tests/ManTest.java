@@ -15,7 +15,7 @@ import java.util.List;
 public class ManTest extends BaseTest {
 
     @Test
-    public void testAddMenProductToCard() {
+    public void testAddProductToCard() {
         getWait2().until(ExpectedConditions.elementToBeClickable(By.id("menu-item-1228"))).click();
 
         getWait2().until(ExpectedConditions.elementToBeClickable(

@@ -9,11 +9,11 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class WomenTest extends BaseTest {
+public class AccessoriesTest extends BaseTest {
 
     @Test
     public void testAddProductToCard() {
-        getDriver().findElement(By.id("menu-item-1229")).click();
+        getWait2().until(ExpectedConditions.elementToBeClickable(By.id("menu-item-1230"))).click();
 
         getWait2().until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//a[@aria-label='Add “Anchor Bracelet” to your cart']"))).click();
