@@ -1,13 +1,12 @@
 package com.ecommerce.tests;
 
 import com.ecommerce.base.BaseTest;
+import com.ecommerce.utils.TestUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 public class StoreTest extends BaseTest {
 
@@ -28,20 +27,23 @@ public class StoreTest extends BaseTest {
         System.out.println(maxFilter);
         System.out.println(minFilter);
 
+
         getDriver().findElement(By.xpath("//div[@class='price_slider_wrapper']//button[@type='submit']")).click();
 
         Thread.sleep(2000);
 
-        List<WebElement> activePrices = getDriver().findElements(
-                By.xpath("//span[contains(@class, 'price')]//span[contains(@class, 'amount') and not(ancestor::del)]"));
+        TestUtils.iteratePagesAndCheck(getDriver(), product -> {
 
-        for (WebElement priceElement : activePrices) {
-            String text = priceElement.getText().trim();
-            text = text.replaceAll("[$,]", "");
-            double price = Double.parseDouble(text);
-            System.out.println("Price: " + price);
+            WebElement priceEl = product.findElement(
+                    By.xpath(".//span[contains(@class,'amount') and not(ancestor::del)]")
+            );
 
-            Assert.assertTrue(price >= minFilter & price <= maxFilter);
-        }
+            double price = Double.parseDouble(
+                    priceEl.getText().replaceAll("[$,]", "")
+            );
+
+            Assert.assertTrue(price >= minFilter && price <= maxFilter);
+        });
+
     }
 }
