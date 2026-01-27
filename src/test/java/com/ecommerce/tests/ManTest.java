@@ -17,7 +17,7 @@ public class ManTest extends BaseTest {
     @Test
     public void testAddProductToCard() {
         List<String> productList = new HomePage(getDriver())
-                .clickMenOption()
+                .getHeader().clickMenOption()
                 .clickAddToCard(PRODUCT_NAME)
                 .clickViewCart()
                 .getProductList();
@@ -31,7 +31,7 @@ public class ManTest extends BaseTest {
         User user = UserFactory.randomUser();
 
         String confirmation = new HomePage(getDriver())
-                .clickMenOption()
+                .getHeader().clickMenOption()
                 .clickAddToCard(PRODUCT_NAME)
                 .clickViewCart()
                 .clickProceedToCheckout()
@@ -56,7 +56,7 @@ public class ManTest extends BaseTest {
         User user = UserUtils.readFromJson("src/test/resources/user.json", User.class);
 
         String confirmation = new HomePage(getDriver())
-                .clickMenOption()
+                .getHeader().clickMenOption()
                 .clickAddToCard(PRODUCT_NAME)
                 .clickViewCart()
                 .clickProceedToCheckout()
