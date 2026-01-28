@@ -12,15 +12,15 @@ public class StoreTest extends BaseTest {
 
     @Test
     public void testFilterPrice() {
-       StorePage storePage = new HomePage(getDriver())
+        StorePage storePage = new HomePage(getDriver())
                 .getHeader().clickStorePage()
-                .moveRightSlider(-50)
-                .applyPriceFilter();
+                .getLeftSideBar().moveRightSlider(-50)
+                .getLeftSideBar().applyPriceFilter();
 
         double minFilter = storePage
-                .getMinFilterValue();
+                .getLeftSideBar().getMinFilterValue();
         double maxFilter = storePage
-                .getMaxFilterValue();
+                .getLeftSideBar().getMaxFilterValue();
 
         List<Double> prices = storePage
                 .getDisplayedProductPrices();
