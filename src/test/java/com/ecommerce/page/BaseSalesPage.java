@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,5 +46,19 @@ implements HasLeftSideBarTrait<Self> {
             priceList.add(Double.parseDouble(text));
         }
         return priceList;
+    }
+
+    public Self openSortingDropdown() {
+        getDriver().findElement(By.cssSelector(".orderby")).click();
+
+        return (Self) this;
+    }
+
+    public Self selectSortByPriceLowToHigh() {
+        WebElement selectElement = getDriver().findElement(By.cssSelector(".orderby"));
+        Select select = new Select(selectElement);
+        select.selectByVisibleText("Sort by price: low to high");
+
+        return (Self) this;
     }
 }

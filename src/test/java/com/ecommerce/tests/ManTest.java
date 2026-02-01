@@ -73,4 +73,18 @@ public class ManTest extends BaseTest {
 
         Assert.assertEquals(confirmation,  "Thank you. Your order has been received.");
     }
+
+    @Test
+    public void testSortingByPriceLowToHigh() {
+        List<Double> priceList = new HomePage(getDriver())
+                .getHeader().clickMenOption()
+                .selectSortByPriceLowToHigh()
+                .getDisplayedProductPrices();
+
+        List<Double> expectedPrices = priceList.stream()
+                .sorted()
+                .toList();
+
+        Assert.assertEquals(priceList, expectedPrices);
+    }
 }
