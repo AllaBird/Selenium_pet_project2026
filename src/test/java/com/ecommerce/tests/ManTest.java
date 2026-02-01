@@ -8,6 +8,7 @@ import com.ecommerce.utils.UserUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class ManTest extends BaseTest {
@@ -75,16 +76,30 @@ public class ManTest extends BaseTest {
     }
 
     @Test
-    public void testSortingByPriceLowToHigh() {
+    public void testSortByPriceLowToHigh() {
         List<Double> priceList = new HomePage(getDriver())
                 .getHeader().clickMenOption()
                 .selectSortByPriceLowToHigh()
                 .getDisplayedProductPrices();
 
-        List<Double> expectedPrices = priceList.stream()
+        List<Double> expectedPriceList = priceList.stream()
                 .sorted()
                 .toList();
 
-        Assert.assertEquals(priceList, expectedPrices);
+        Assert.assertEquals(priceList, expectedPriceList);
+    }
+
+    @Test
+    public void testSortByPriceHighToLow() {
+        List<Double> priceList = new HomePage(getDriver())
+                .getHeader().clickMenOption()
+                .selectSortByPriceHighToLow()
+                .getDisplayedProductPrices();
+
+        List<Double> expectedPriceList = priceList.stream()
+                .sorted(Comparator.reverseOrder())
+                .toList();
+
+        Assert.assertEquals(priceList, expectedPriceList);
     }
 }

@@ -18,6 +18,8 @@ implements HasLeftSideBarTrait<Self> {
         super(driver);
     }
 
+    Select select;
+
     public Self clickAddToCard(String productName) {
         getWait2().until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//a[@aria-label='Add “%s” to your cart']".formatted(productName)))).click();
@@ -48,16 +50,19 @@ implements HasLeftSideBarTrait<Self> {
         return priceList;
     }
 
-    public Self openSortingDropdown() {
-        getDriver().findElement(By.cssSelector(".orderby")).click();
-
-        return (Self) this;
-    }
-
     public Self selectSortByPriceLowToHigh() {
         WebElement selectElement = getDriver().findElement(By.cssSelector(".orderby"));
         Select select = new Select(selectElement);
         select.selectByVisibleText("Sort by price: low to high");
+
+        return (Self) this;
+    }
+
+    public Self selectSortByPriceHighToLow() {
+        WebElement selectElement = getDriver().findElement(By.cssSelector(".orderby"));
+
+        Select select = new Select(selectElement);
+        select.selectByVisibleText("Sort by price: high to low");
 
         return (Self) this;
     }
