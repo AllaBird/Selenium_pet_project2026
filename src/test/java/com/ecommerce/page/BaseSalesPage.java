@@ -18,8 +18,6 @@ implements HasLeftSideBarTrait<Self> {
         super(driver);
     }
 
-    Select select;
-
     public Self clickAddToCard(String productName) {
         getWait2().until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//a[@aria-label='Add “%s” to your cart']".formatted(productName)))).click();
@@ -48,6 +46,14 @@ implements HasLeftSideBarTrait<Self> {
             priceList.add(Double.parseDouble(text));
         }
         return priceList;
+    }
+
+    public List<String> getProductNameList() {
+        getWait5().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//li//h2")));
+
+        return getDriver().findElements(By.xpath("//li//h2")).stream()
+                .map(WebElement::getText)
+                .toList();
     }
 
     public Self selectSortByPriceLowToHigh() {

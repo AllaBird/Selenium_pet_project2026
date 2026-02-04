@@ -102,4 +102,19 @@ public class ManTest extends BaseTest {
 
         Assert.assertEquals(priceList, expectedPriceList);
     }
+
+    @Test
+    public void testSearch() {
+        final String name = "jeans";
+
+        List<String> productList = new HomePage(getDriver())
+                .getHeader().clickMenOption()
+                .getLeftSideBar().enterProductAndSearch(name)
+                .getProductNameList();
+
+        Assert.assertTrue(
+                productList.stream().allMatch(p -> p.toLowerCase().contains(name)),
+                "Not all products contain 'jeans' in the name"
+        );
+    }
 }

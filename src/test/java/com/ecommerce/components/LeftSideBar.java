@@ -48,4 +48,11 @@ public class LeftSideBar<T extends BaseSalesPage> extends BaseComponent {
         return parentPage;
     }
 
+    public T enterProductAndSearch(String product) {
+        getDriver().findElement(By.id("woocommerce-product-search-field-0")).sendKeys(product);
+        getDriver().findElement(By.xpath("//button[@value='Search']")).click();
+
+        return parentPage;
+    }
+
 }
