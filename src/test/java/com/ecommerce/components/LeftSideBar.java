@@ -55,4 +55,13 @@ public class LeftSideBar<T extends BaseSalesPage> extends BaseComponent {
         return parentPage;
     }
 
+    public <T> T selectCategory(String value, T page) {
+        WebElement dropdown = getDriver().findElement(By.id("product_cat"));
+        dropdown.click();
+        dropdown.findElement(By.cssSelector("option[value='" + value + "']")).click();
+
+        getWait5().until(ExpectedConditions.stalenessOf(dropdown));
+
+        return page;
+    }
 }

@@ -72,4 +72,9 @@ implements HasLeftSideBarTrait<Self> {
 
         return (Self) this;
     }
+
+    public String getTitle() {
+       return getWait5().until(ExpectedConditions.visibilityOf(
+               getDriver().findElement(By.xpath("//h1")))).getText();
+     }
 }
