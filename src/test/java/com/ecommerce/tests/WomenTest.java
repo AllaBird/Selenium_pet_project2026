@@ -15,7 +15,7 @@ public class WomenTest extends BaseTest {
         List<String> productList = new HomePage(getDriver())
                 .getHeader().clickWomenOption()
                 .clickAddToCard("Anchor Bracelet")
-                .clickViewCart()
+                .getHeader().clickViewCart()
                 .getProductList();
 
         Assert.assertEquals(productList.size(), 1);

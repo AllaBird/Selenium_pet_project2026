@@ -20,7 +20,7 @@ public class ManTest extends BaseTest {
         List<String> productList = new HomePage(getDriver())
                 .getHeader().clickMenOption()
                 .clickAddToCard(PRODUCT_NAME)
-                .clickViewCart()
+                .getHeader().clickViewCart()
                 .getProductList();
 
         Assert.assertEquals(productList.size(), 1);
@@ -34,7 +34,7 @@ public class ManTest extends BaseTest {
         String confirmation = new HomePage(getDriver())
                 .getHeader().clickMenOption()
                 .clickAddToCard(PRODUCT_NAME)
-                .clickViewCart()
+                .getHeader().clickViewCart()
                 .clickProceedToCheckout()
                 .fillFirstNameField(user.firstName())
                 .fillLastNameField(user.lastName())
@@ -48,8 +48,6 @@ public class ManTest extends BaseTest {
                 .getConfirmationOrderText();
 
         Assert.assertEquals(confirmation,  "Thank you. Your order has been received.");
-
-
     }
 
     @Test
@@ -59,7 +57,7 @@ public class ManTest extends BaseTest {
         String confirmation = new HomePage(getDriver())
                 .getHeader().clickMenOption()
                 .clickAddToCard(PRODUCT_NAME)
-                .clickViewCart()
+                .getHeader().clickViewCart()
                 .clickProceedToCheckout()
                 .fillFirstNameField(user.firstName())
                 .fillLastNameField(user.lastName())

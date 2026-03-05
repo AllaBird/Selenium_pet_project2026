@@ -28,14 +28,6 @@ implements HasLeftSideBarTrait<Self> {
         return (Self) this;
     }
 
-    @Step("Open shopping cart")
-    public CartPage clickViewCart() {
-        getWait2().until(ExpectedConditions.elementToBeClickable(
-                By.xpath("(//a[@title='View your shopping cart'])[1]"))).click();
-
-        return new CartPage(getDriver());
-    }
-
     public List<Double> getDisplayedProductPrices() {
         List<WebElement> prices = getDriver().findElements(
                 By.xpath("//span[contains(@class, 'price')]//span[contains(@class, 'amount') and not(ancestor::del)]"));

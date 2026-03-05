@@ -1,6 +1,7 @@
 package com.ecommerce.components;
 
 import com.ecommerce.page.AccessoriesPage;
+import com.ecommerce.page.CartPage;
 import com.ecommerce.page.HomePage;
 import com.ecommerce.page.MenPage;
 import com.ecommerce.page.StorePage;
@@ -50,5 +51,13 @@ public class Header extends BaseComponent {
         getDriver().findElement(By.id("menu-item-1227")).click();
 
         return new StorePage(getDriver());
+    }
+
+    @Step("Open shopping cart")
+    public CartPage clickViewCart() {
+        getWait2().until(ExpectedConditions.elementToBeClickable(
+                By.xpath("(//a[@title='View your shopping cart'])[1]"))).click();
+
+        return new CartPage(getDriver());
     }
 }

@@ -14,10 +14,23 @@ public class AccessoriesTest extends BaseTest {
         List<String> productList = new HomePage(getDriver())
                 .getHeader().clickAccessoriesOption()
                 .clickAddToCard("Anchor Bracelet")
-                .clickViewCart()
+                .getHeader().clickViewCart()
                 .getProductList();
 
         Assert.assertEquals(productList.size(), 1);
         Assert.assertEquals(productList.get(0), "Anchor Bracelet");
+    }
+
+    @Test
+    public void testChangeQuantityInCard() {
+        String quantity = new HomePage(getDriver())
+                .getHeader().clickAccessoriesOption()
+                .clickAddToCard("Anchor Bracelet")
+                .getHeader().clickViewCart()
+                .clickIncreaseQuantityByOneArrow()
+                .clickUpdateCart()
+                .getQuantity();
+
+        Assert.assertEquals(quantity, "2");
     }
 }
