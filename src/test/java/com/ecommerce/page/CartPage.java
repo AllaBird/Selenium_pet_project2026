@@ -1,6 +1,7 @@
 package com.ecommerce.page;
 
 import com.ecommerce.page.base.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -22,12 +23,14 @@ public class CartPage extends BasePage {
                 .toList();
     }
 
+    @Step("Click 'Proceed to checkout'")
     public CheckoutPage clickProceedToCheckout() {
         getWait2().until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Proceed to checkout')]"))).click();
 
         return new CheckoutPage(getDriver());
     }
 
+    @Step("Increase product quantity by one using arrow key")
     public CartPage clickIncreaseQuantityByOneArrow() {
         WebElement input = getWait5().until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='number']")));
         input.sendKeys(Keys.ARROW_UP);
@@ -35,6 +38,7 @@ public class CartPage extends BasePage {
         return this;
     }
 
+    @Step("Click 'Update cart' button and wait for update to complete")
     public CartPage clickUpdateCart() {
         getWait2().until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@name='update_cart']"))).click();
         getWait5().until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("(//div[@class='blockUI blockOverlay'])[1]")));
