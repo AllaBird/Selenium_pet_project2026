@@ -1,6 +1,7 @@
 package com.ecommerce.components;
 
 import com.ecommerce.page.BaseSalesPage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -15,6 +16,7 @@ public class LeftSideBar<T extends BaseSalesPage> extends BaseComponent {
         this.parentPage = parentPage;
     }
 
+    @Step("Move right price slider by offset: {offsetX}")
     public T moveRightSlider(int offsetX) {
         WebElement rightSlider = getDriver().findElement(
                 By.xpath("(//div[contains(@class,'price_slider')]//span[contains(@class,'ui-slider-handle')])[2]"));
@@ -38,6 +40,7 @@ public class LeftSideBar<T extends BaseSalesPage> extends BaseComponent {
                 getDriver().findElement(By.id("max_price")).getAttribute("value"));
     }
 
+    @Step("Apply price filter")
     public T applyPriceFilter() {
         getDriver().findElement(By.xpath("//div[@class='price_slider_wrapper']//button[@type='submit']")).click();
 
@@ -48,6 +51,7 @@ public class LeftSideBar<T extends BaseSalesPage> extends BaseComponent {
         return parentPage;
     }
 
+    @Step("Search for product: {product}")
     public T enterProductAndSearch(String product) {
         getDriver().findElement(By.id("woocommerce-product-search-field-0")).sendKeys(product);
         getDriver().findElement(By.xpath("//button[@value='Search']")).click();
@@ -55,6 +59,7 @@ public class LeftSideBar<T extends BaseSalesPage> extends BaseComponent {
         return parentPage;
     }
 
+    @Step("Select category with value: {value}")
     public <T> T selectCategory(String value, T page) {
         WebElement dropdown = getDriver().findElement(By.id("product_cat"));
         dropdown.click();
